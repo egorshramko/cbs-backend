@@ -1,0 +1,3 @@
+-Dspring.datasource.url={URL локальной базы}
+-Dspring.datasource.username={Имя пользователя локальной базы}
+-Dspring.datasource.password={Пароль локальной базы}

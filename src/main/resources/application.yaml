@@ -1,3 +1,16 @@
 spring:
   application:
     name: cbs-backend
+
+  datasource:
+    url: ${CBS_POSTGRES_URL}
+    username: ${CBS_POSTGRES_USER}
+    password: ${CBS_POSTGRES_PASSWORD}
+    
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    
+  flyway:
+    enabled: true
+
