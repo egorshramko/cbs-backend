@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @RestController
@@ -21,9 +21,12 @@ public class MovieController {
     private final MovieServiceFacade movieServiceFacade;
 
     @GetMapping
-    @ResponseBody
-    public List<MovieDto> getAllMovies() {
-        return movieServiceFacade.getAllMovies();
+    public ResponseEntity<List<MovieDto>> getAllMovies() {
+        final List<MovieDto> responseBody = movieServiceFacade.getAllMovies();
+        return ResponseEntity
+                    .status(200)
+                    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+                    .body(responseBody);
     }
     
 
