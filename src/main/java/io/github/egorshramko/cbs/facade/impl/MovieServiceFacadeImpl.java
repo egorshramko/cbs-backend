@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class MovieServiceFacadeImpl implements MovieServiceFacade{
+public class MovieServiceFacadeImpl implements MovieServiceFacade {
 
     private final MovieMapper movieMapper;
     private final MovieService movieService;

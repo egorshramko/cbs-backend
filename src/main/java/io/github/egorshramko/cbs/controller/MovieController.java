@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.egorshramko.cbs.dto.MovieDto;
-import io.github.egorshramko.cbs.service.MovieService;
+import io.github.egorshramko.cbs.facade.MovieServiceFacade;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequiredArgsConstructor
 public class MovieController {
 
-    private final MovieService movieService;
+    private final MovieServiceFacade movieServiceFacade;
 
     @GetMapping
     @ResponseBody
     public List<MovieDto> getAllMovies() {
-        return null;
+        return movieServiceFacade.getAllMovies();
     }
     
 

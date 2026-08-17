@@ -20,7 +20,7 @@ public interface MovieMapper {
 
     default DurationDto map(Duration duration) {
         Long hours = duration.getSeconds() / 60 / 60;
-        Long minutes = duration.getSeconds() % 60;
+        Long minutes = duration.getSeconds() / 60 % 60;
         return new DurationDto(hours, minutes);
     }
 }
