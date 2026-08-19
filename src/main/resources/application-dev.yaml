@@ -1,8 +1,14 @@
+domain:
+  name: dev.local.home
+
+frontend:
+  uri: http://dev.local.home:3000
+
 spring:
   cloud:
     aws:
       s3:
-        endpoint: http://cbs-minio:9000
+        endpoint: http://s3:9000
         path-style-access-enabled: true
       region:
         static: us-east-1

@@ -1,3 +1,9 @@
+domain:
+  name: localhost
+
+frontend:
+  uri: http://localhost:3000
+
 spring:
   cloud:
     aws:

@@ -3,6 +3,7 @@ package io.github.egorshramko.cbs.facade.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.github.egorshramko.cbs.dto.MovieDto;
@@ -16,6 +17,9 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class MovieServiceFacadeImpl implements MovieServiceFacade {
+
+    @Value("${domain.name}")
+    private String domainName;
 
     private final MovieMapper movieMapper;
     private final MovieService movieService;
@@ -32,7 +36,10 @@ public class MovieServiceFacadeImpl implements MovieServiceFacade {
 
             final String moviesBucket = "movies";
             
-            final String imageUrl = s3PresignedUrlService.getPresignedUrl(moviesBucket, movie.getPosterFilename());
+            final String internalImageUrl = s3PresignedUrlService.getPresignedUrl(moviesBucket, movie.getPosterFilename());
+            final String imageUrl = internalImageUrl.replaceFirst("s3:9000", domainName + ":9000");
+            
+
             final MovieDto movieDto = movieMapper.toDto(movie, imageUrl);
             movieDtos.add(movieDto);
 

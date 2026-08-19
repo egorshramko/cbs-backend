@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class MovieController {
 
+    @Value("${frontend.uri}")
+    private String frontendUri;
+
     private final MovieServiceFacade movieServiceFacade;
 
     @GetMapping
@@ -25,7 +29,7 @@ public class MovieController {
         final List<MovieDto> responseBody = movieServiceFacade.getAllMovies();
         return ResponseEntity
                     .status(200)
-                    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+                    .header("Access-Control-Allow-Origin", "*") //TODO: подумать, как исправить * на конкретные адреса
                     .body(responseBody);
     }
     
