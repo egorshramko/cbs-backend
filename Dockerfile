@@ -7,7 +7,7 @@ ARG JRE_VERSION=21-jre
 
 FROM eclipse-temurin:${JDK_VERSION} AS build
 WORKDIR /cbs-backend
-COPY . .
+COPY --chmod=755 . .
 RUN ./mvnw package -DskipTests
 
 #==================================================
