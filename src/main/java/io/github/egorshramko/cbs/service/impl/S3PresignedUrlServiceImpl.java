@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import io.awspring.cloud.s3.S3Template;
 import io.github.egorshramko.cbs.service.S3PresignedUrlService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class S3PresignedUrlServiceImpl implements S3PresignedUrlService {
@@ -19,6 +21,7 @@ public class S3PresignedUrlServiceImpl implements S3PresignedUrlService {
     public String getPresignedUrl(String bucket, String objectKey) {
         
         URL presignedUrl = s3Template.createSignedGetURL(bucket, objectKey, Duration.ofMinutes(5));
+        log.info("Presigned URL host: {}", presignedUrl.getHost());
 
         return presignedUrl.toString();
 
