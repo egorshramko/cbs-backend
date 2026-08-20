@@ -36,9 +36,7 @@ public class MovieServiceFacadeImpl implements MovieServiceFacade {
 
             final String moviesBucket = "movies";
             
-            final String internalImageUrl = s3PresignedUrlService.getPresignedUrl(moviesBucket, movie.getPosterFilename());
-            final String imageUrl = internalImageUrl.replaceFirst("s3:9000", domainName + ":9000");
-            
+            final String imageUrl = s3PresignedUrlService.getPresignedUrl(moviesBucket, movie.getPosterFilename());
 
             final MovieDto movieDto = movieMapper.toDto(movie, imageUrl);
             movieDtos.add(movieDto);
