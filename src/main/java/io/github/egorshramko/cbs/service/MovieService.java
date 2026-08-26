@@ -6,4 +6,5 @@ import io.github.egorshramko.cbs.model.Movie;
 
 public interface MovieService {
     List<Movie> getAllMovies();
+    Movie getMovieById(Long id);
 }

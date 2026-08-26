@@ -12,10 +12,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping("/api/v1/movies")
 @RequiredArgsConstructor
 public class MovieController {
 
@@ -24,12 +24,21 @@ public class MovieController {
 
     private final MovieServiceFacade movieServiceFacade;
 
-    @GetMapping
+    @GetMapping("/api/v1/movies")
     public ResponseEntity<List<MovieDto>> getAllMovies() {
         final List<MovieDto> responseBody = movieServiceFacade.getAllMovies();
         return ResponseEntity
                     .status(200)
                     .header("Access-Control-Allow-Origin", "*") //TODO: подумать, как исправить * на конкретные адреса
+                    .body(responseBody);
+    }
+
+    @GetMapping("/api/v1/movie/{id}")
+    public ResponseEntity<MovieDto> getMovieInformationById(@PathVariable Long id) {
+        final MovieDto responseBody = movieServiceFacade.getMovieById(id);
+        return ResponseEntity
+                    .status(200)
+                    .header("Access-Control-Allow-Origin", "*")
                     .body(responseBody);
     }
     
