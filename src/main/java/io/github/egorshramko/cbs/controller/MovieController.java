@@ -1,6 +1,5 @@
 package io.github.egorshramko.cbs.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.egorshramko.cbs.dto.MovieDto;
@@ -41,7 +40,5 @@ public class MovieController {
                     .header("Access-Control-Allow-Origin", "*")
                     .body(responseBody);
     }
-    
-
 
 }
