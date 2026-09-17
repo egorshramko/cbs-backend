@@ -1,3 +1,8 @@
+logging:
+  level:
+    root: info
+    '[io.github.egorshramko.cbs.service]': debug
+
 server:
   port: 8081
 
