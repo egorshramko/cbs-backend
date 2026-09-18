@@ -30,7 +30,10 @@ public class SessionsController {
         log.info("Calling /api/v1/sessions?movie={}&date={}", movie, date.toString());
 
         MovieSessionResponse responseBody = sessionService.getMovieSessionByDate(Long.parseLong(movie), date);
-        return ResponseEntity.ok(responseBody);
+        return ResponseEntity
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .body(responseBody);
 
     }
     
