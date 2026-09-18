@@ -50,11 +50,13 @@ public class SessionMapper {
 
                 HallSession hallSession = new HallSession(
                     hall.getName(),
-                    List.copyOf(hall.getMovieFormats()),
+                    hall.getMovieFormats().stream()
+                            .map(movieFormat -> movieFormat.getFormat().toLowerCase())
+                            .toList(),
                     sessions.stream()
-                        .filter(session -> session.getHall().equals(hall))
-                        .map(session -> mapSessionToDto(session))
-                        .toList()
+                            .filter(session -> session.getHall().equals(hall))
+                            .map(session -> mapSessionToDto(session))
+                            .toList()
                 );
 
                 hallSessions.add(hallSession);
