@@ -33,3 +33,5 @@ build/
 .vscode/
 
 .mvn/maven.config
+**/src/main/resources/static/cinemas
+**/src/main/resources/static/movies

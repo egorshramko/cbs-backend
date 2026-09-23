@@ -25,6 +25,9 @@ public class MovieServiceFacadeImpl implements MovieServiceFacade {
     private final MovieService movieService;
     private final S3PresignedUrlService s3PresignedUrlService;
 
+    //TODO: как будто хардкод здесь - не лучшая идея
+    private final String moviesBucket = "movies"; 
+
     @Override
     public List<MovieDto> getAllMovies() {
         final List<Movie> movies = movieService.getAllMovies();
@@ -46,6 +49,11 @@ public class MovieServiceFacadeImpl implements MovieServiceFacade {
         return movieDtos;
     }
 
-
+    @Override
+    public MovieDto getMovieById(Long id) {
+        final Movie movie = movieService.getMovieById(id);
+        final String imageUrl = s3PresignedUrlService.getPresignedUrl(moviesBucket, movie.getPosterFilename());
+        return movieMapper.toDto(movie, imageUrl);
+    }
 
 }

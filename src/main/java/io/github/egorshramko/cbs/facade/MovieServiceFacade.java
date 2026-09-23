@@ -6,4 +6,5 @@ import io.github.egorshramko.cbs.dto.MovieDto;
 
 public interface MovieServiceFacade {
     List<MovieDto> getAllMovies();
+    MovieDto getMovieById(Long id);
 }
